@@ -1,85 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة تحكم سوبر ماركت</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة تحكم سوبر ماركت</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-
-<body>
-  <div class="dashboard-container">
-    <aside class="sidebar">
-      <div class="logo">
-        <i class="fas fa-leaf"></i>
-        <span>فريش ماركت</span>
-      </div>
-      <nav>
-        <a href="index.html" class="active"><i class="fas fa-th-large"></i> الرئيسية</a>
-        <a href="pro.html"><i class="fas fa-box"></i> المنتجات</a>
-        <a href="bills.html"><i class="fas fa-clipboard-list"></i> الكاشير</a>
-
-      </nav>
-    </aside>
-
-    <main class="main-content">
-      <header class="top-header">
-        <div class="search-bar">
-          <i class="fas fa-search"></i>
-          <input type="text" id="search" placeholder="ابحث عن منتج أو طلب..." onkeyup="searchProduct()">
+  <body>
+    <div class="dashboard-container" id="hide">
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fas fa-leaf"></i>
+          <span>فريش ماركت</span>
         </div>
-        <div class="header-actions">
-          <div class="notification"><i class="fas fa-bell"></i><span class="dot"></span></div>
-          <div class="profile">
-            <img src="https://ui-avatars.com/api/?name=NA&background=0D8ABC&color=fff" alt="User">
-            <span>نبيل محمد</span>
+        <nav>
+          <a href="index.html" class="active"
+            ><i class="fas fa-th-large"></i> الرئيسية</a
+          >
+          <a href="pro.html"><i class="fas fa-box"></i> المنتجات</a>
+          <a href="bills.html"><i class="fas fa-clipboard-list"></i> الكاشير</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="top-header">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              id="search"
+              placeholder="ابحث عن منتج أو طلب..."
+              onkeyup="searchProduct()"
+            />
           </div>
-        </div>
-      </header>
-
-      <section class="stats-container">
-        <div class="stat-card">
-          <div class="stat-icon purple"><i class="fas fa-wallet"></i></div>
-          <div class="stat-info">
-            <p>إجمالي المبيعات</p>
-            <h3 class="nab">0</h3>
+          <div class="header-actions">
+            <div class="notification">
+              <i class="fas fa-bell"></i><span class="dot"></span>
+            </div>
+            <div class="profile">
+              <img
+                src="https://ui-avatars.com/api/?name=NA&background=0D8ABC&color=fff"
+                alt="User"
+              />
+              <span>نبيل محمد</span>
+            </div>
           </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon orange"><i class="fas fa-truck-loading"></i></div>
-          <div class="stat-info">
-            <p>عدد المنتجات</p>
-            <h3 class="no_pro"></h3>
+        </header>
+
+        <section class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-wallet"></i></div>
+            <div class="stat-info">
+              <p>إجمالي المبيعات</p>
+              <h3 class="nab">0</h3>
+            </div>
           </div>
-        </div>
-      </section>
+          <div class="stat-card">
+            <div class="stat-icon orange">
+              <i class="fas fa-truck-loading"></i>
+            </div>
+            <div class="stat-info">
+              <p>عدد المنتجات</p>
+              <h3 class="no_pro"></h3>
+            </div>
+          </div>
+        </section>
 
-      <section class="recent-orders">
-        <div class="section-header">
-          <h2>العمليات الأخيرة</h2>
-          <button class="btnviewall"><a href="pro.html"> عرض الكل </a></button>
-        </div>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>المنتج</th>
-                <th>الكمية</th>
-                <th>السعر</th>
-              </tr>
-            </thead>
-            <tbody id="tableBody1">
-            </tbody>
-
-          </table>
-        </div>
-      </section>
-    </main>
-  </div>
-  <script src="home.js"></script>
-  <script src="script.js"></script>
-</body>
-
+        <section class="recent-orders">
+          <div class="section-header">
+            <h2>العمليات الأخيرة</h2>
+            <button class="btnviewall">
+              <a href="pro.html"> عرض الكل </a>
+            </button>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>المنتج</th>
+                  <th>الكمية</th>
+                  <th>السعر</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody1"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="home.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

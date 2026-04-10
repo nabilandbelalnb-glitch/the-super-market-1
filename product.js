@@ -43,10 +43,10 @@ function displayProducts(list = products) {
           <button class="delete" onclick="deleteProduct(${index})">Delete</button>
         </td>
               <td>
-          <button class="plus" onclick="plus()">+</button>
+          <button class="plus" onclick = 'plus1()'>+</button>
         </td>
               <td>
-          <button class="minus" onclick="minus()">-</button>
+          <button class="minus">-</button>
         </td>
       </tr>
     `;
@@ -68,15 +68,10 @@ let count1 = document.querySelector(".count");
 let plus = document.querySelector(".plus");
 let minus = document.querySelector(".minus");
 
-plus.onclick = function () {
-  count1.textContent = +count1.textContent + 1;
-};
-
-// minus count
-
-minus.onclick = function () {
-  count1.textContent = +count1.textContent - 1;
-};
+function plus1() {
+  let count1 = document.querySelector(".count");
+  count1.innerHTML = `${+count1.innerHTML + 1}`
+}
 
 // 🔍 Search Product
 function searchProduct() {

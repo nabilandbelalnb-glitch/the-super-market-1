@@ -35,6 +35,7 @@ body {
   padding: 30px 20px;
 }
 
+
 .logo {
   display: flex;
   align-items: center;
@@ -214,3 +215,6 @@ a {
   right: 222px;
   width: 351%;
 }
+
+
+
