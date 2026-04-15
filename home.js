@@ -44,3 +44,20 @@ function searchProduct() {
 
   displayProducts(filtered);
 }
+
+let grand = document.getElementById("grandTotal");
+const price = parseFloat(document.getElementById("prodPrice").value);
+const qty = parseInt(document.getElementById("prodQty").value);
+
+const item = {
+  price: price,
+  qty: qty,
+  total: price * qty,
+}
+
+grand += item.total;
+
+let sells = document.querySelector('.nab');
+
+
+sells.innerHTML = `nabil`

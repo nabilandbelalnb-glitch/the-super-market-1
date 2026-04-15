@@ -50,7 +50,7 @@ async function addProduct() {
     products[editIndex] = product;
     editIndex = null;
 
-    document.getElementById("submitBtn").innerText = "Add Product";
+    document.getElementById("submitBtn")
   }
 
   saveToLocalStorage();
