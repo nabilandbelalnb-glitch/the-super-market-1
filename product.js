@@ -1,6 +1,6 @@
 // ضع هنا الرابط الذي حصلت عليه من الخطوة السابقة
 const GOOGLE_SHEET_URL =
-  "https://script.google.com/macros/s/AKfycbxVQJr0vcq8Vx7ekMlInFBv_mrvpI4gwQI9DoOQ6Db3XXahX_C8HYrZHIQVVXrW8p_ZCQ/exec";
+  "https://script.google.com/macros/s/AKfycbxkhwbBVsBNHosvgqiM4njeX9INH5Xeg4xCdH6FDzN8xjoXxGRaYyGXC1SMm3qtyp8s-g/exec";
 
 async function addProduct() {
   let name = document.getElementById("name").value;
@@ -109,8 +109,24 @@ function searchProduct() {
 }
 
 
-
+// تحديث دالة الحذف في ملف product.js
 function deleteProduct(index) {
+  let productName = products[index].name; // الحصول على الاسم قبل الحذف من المصفوفة
+
+  // إرسال طلب الحذف إلى Google Sheets
+  fetch(GOOGLE_SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "delete",
+      name: productName
+    }),
+  })
+    .then(() => console.log("تم الحذف من جوجل شيت"))
+    .catch(err => console.error("خطأ في الاتصال:", err));
+
+  // الحذف المحلي المكتوب في ملفك الأصلي
   products.splice(index, 1);
   saveToLocalStorage();
   displayProducts();
@@ -130,5 +146,5 @@ function prepareEdit(index) {
 
   editIndex = index;
 
-  document.getElementById("submitBtn").innerText = "Update Product";
+  document.getElementById("submitBtn").innerText = "تحديث المنتج";
 }
