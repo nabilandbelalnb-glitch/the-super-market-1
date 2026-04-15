@@ -6,6 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>إدارة المنتجات - فريش ماركت</title>
    <link rel="stylesheet" href="style.css">
+   <link rel="shortcut icon" href="/46271.jpg">
    <link rel="stylesheet" href="pro.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -30,10 +31,12 @@
 
          <div class="container">
             <div class="form">
-               <input type="text" id="name" placeholder="Product Name">
-               <input type="number" id="price" placeholder="Price">
-               <input type="text" id="count" placeholder="count">
-               <button onclick="addProduct()">Add Product</button>
+               <input type="text" id="name" placeholder="المنتج">
+               <input type="number" id="price" placeholder="سعر الجمله">
+               <input type="number" id="old_price" placeholder="سعر البيع">
+               <input type="text" id="count" placeholder="الكميه">
+               <button onclick="addProduct()" id="submitBtn">أضف المنتج</button>
+               <button class="update">تحديث المنتج</button>
             </div>
 
             <input type="text" id="search" placeholder="ابحث عن منتج أو طلب..." onkeyup="searchProduct()">
@@ -41,16 +44,20 @@
             <table>
                <thead>
                   <tr class="tr1">
-                     <th>Name</th>
-                     <th>Price</th>
-                     <th>count</th>
-                     <th>Action</th>
+                     <th>المنتج</th>
+                     <th>سعر الجمله</th>
+                     <th>سعر البيع</th>
+                     <th>الكميه</th>
+                     <th>المكسب</th>
+                     <th>احذف</th>
+                     <th>تعديل</th>
                   </tr>
                </thead>
                <tbody id="tableBody">
                </tbody>
             </table>
          </div>
+         </section>
       </main>
    </div>
    <script src="product.js"></script>

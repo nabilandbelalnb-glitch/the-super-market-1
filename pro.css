@@ -88,27 +88,11 @@ button.delete {
   border-radius: 5px;
   cursor: pointer;
   position: relative;
-  left: 30px;
+  left: 5px;
 }
 
 input {
   outline: grey;
-}
-
-.plus,
-.minus {
-  border: none;
-  background-color: #6366f1;
-  padding: 10px;
-  border-radius: 4px;
-  color: white;
-  position: relative;
-  left: 42px;
-}
-
-.minus {
-  position: relative;
-  left: 136px;
 }
 
 a {

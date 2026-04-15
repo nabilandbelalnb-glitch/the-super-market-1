@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="shortcut icon" href="/46271.jpg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400..700&display=swap"
@@ -37,7 +38,7 @@
         <h3>إضافة منتج للفاتورة</h3>
         <input type="text" id="prodName" placeholder="اسم المنتج">
         <input type="number" id="prodPrice" placeholder="السعر">
-        <input type="number" id="prodQty" placeholder="الكمية">
+        <input type="number" id="prodQty" placeholder="الكمية" value="1">
         <button onclick="addToCart()">إضافة إلى السلة</button>
       </div>
 
@@ -51,7 +52,6 @@
               <th>السعر</th>
               <th>الكمية</th>
               <th>المجموع</th>
-              <th>حذف</th>
             </tr>
           </thead>
           <tbody id="billBody"></tbody>

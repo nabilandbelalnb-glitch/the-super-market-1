@@ -1,3 +1,63 @@
+// ضع هنا الرابط الذي حصلت عليه من الخطوة السابقة
+const GOOGLE_SHEET_URL =
+  "https://script.google.com/macros/s/AKfycbxVQJr0vcq8Vx7ekMlInFBv_mrvpI4gwQI9DoOQ6Db3XXahX_C8HYrZHIQVVXrW8p_ZCQ/exec";
+
+async function addProduct() {
+  let name = document.getElementById("name").value;
+  let price = document.getElementById("price").value;
+  let count = document.getElementById("count").value;
+  let old_price = document.getElementById("old_price").value;
+  let profit = old_price - price / count;
+
+  if (name === "" || price === "" || count === "" || old_price === "") {
+    alert("برجاء ملء كافة الحقول");
+    return;
+
+  }
+
+  let product = { name, price, old_price, count, profit };
+
+  // 1. إرسال البيانات إلى Google Sheets
+  try {
+    // إظهار تنبيه بسيط للمستخدم أثناء التحميل
+    console.log("جاري الحفظ في جوجل شيت...");
+
+    fetch(GOOGLE_SHEET_URL, {
+      method: "POST",
+      mode: "no-cors", // ضرورية لتجنب مشاكل CORS مع تطبيقات جوجل
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    });
+
+
+    alert("تم إضافة المنتج بنجاح في الموقع وجوجل شيت!");
+  } catch (error) {
+    console.error("خطأ في الاتصال:", error);
+    alert("حدث خطأ أثناء الاتصال بقاعدة البيانات");
+  }
+
+  if (name === "" || price === "" || count === "" || old_price === "") {
+    alert("Please fill all fields");
+    return;
+  }
+  if (editIndex === null) {
+    // ➕ ADD
+    products.push(product);
+  } else {
+    // ✏️ UPDATE
+    products[editIndex] = product;
+    editIndex = null;
+
+    document.getElementById("submitBtn").innerText = "Add Product";
+  }
+
+  saveToLocalStorage();
+  displayProducts();
+}
+
+
 let products = [];
 // 🔄 Load data from LocalStorage when page opens
 if (localStorage.getItem("products")) {
@@ -5,24 +65,6 @@ if (localStorage.getItem("products")) {
   displayProducts();
 }
 
-// ➕ Add Product
-function addProduct() {
-  let name = document.getElementById("name").value;
-  let price = document.getElementById("price").value;
-  let count = document.getElementById("count").value;
-
-  if (name === "" || price === "" || count === "") {
-    alert("Please fill all fields");
-    return;
-  }
-
-  let product = { name, price, count };
-  products.push(product);
-
-  saveToLocalStorage();
-  clearInputs();
-  displayProducts();
-}
 
 // 💾 Save to LocalStorage
 function saveToLocalStorage() {
@@ -38,40 +80,22 @@ function displayProducts(list = products) {
       <tr>
         <td>${product.name}</td>
         <td>${product.price}</td>
+        <td>${product.old_price}</td>
         <td class ='count'>${product.count}</td>
+        <td>${(product.old_price - product.price) * product.count}</td>
         <td>
           <button class="delete" onclick="deleteProduct(${index})">Delete</button>
         </td>
-              <td>
-          <button class="plus" onclick = 'plus1()'>+</button>
-        </td>
-              <td>
-          <button class="minus">-</button>
-        </td>
-      </tr>
+        <td><button onclick="prepareEdit(${index})" class="edit-btn"><i class="fas fa-edit"></i></button></td>
     `;
   });
 
   document.getElementById("tableBody").innerHTML = table;
 }
 
-// ❌ Delete Product
-function deleteProduct(index) {
-  products.splice(index, 1);
-  saveToLocalStorage();
-  displayProducts();
-}
 
-// plus count
 
-let count1 = document.querySelector(".count");
-let plus = document.querySelector(".plus");
-let minus = document.querySelector(".minus");
 
-function plus1() {
-  let count1 = document.querySelector(".count");
-  count1.innerHTML = `${+count1.innerHTML + 1}`
-}
 
 // 🔍 Search Product
 function searchProduct() {
@@ -84,9 +108,27 @@ function searchProduct() {
   displayProducts(filtered);
 }
 
-// 🧹 Clear Inputs
-function clearInputs() {
-  document.getElementById("name").value = "";
-  document.getElementById("price").value = "";
-  document.getElementById("count").value = "";
+
+
+function deleteProduct(index) {
+  products.splice(index, 1);
+  saveToLocalStorage();
+  displayProducts();
+}
+
+
+
+
+let editIndex = null;
+function prepareEdit(index) {
+  let product = products[index];
+
+  document.getElementById("name").value = product.name;
+  document.getElementById("price").value = product.price;
+  document.getElementById("count").value = product.count;
+  document.getElementById("old_price").value = product.old_price;
+
+  editIndex = index;
+
+  document.getElementById("submitBtn").innerText = "Update Product";
 }
