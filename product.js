@@ -82,7 +82,7 @@ function displayProducts(list = products) {
         <td>${product.price}</td>
         <td>${product.old_price}</td>
         <td class ='count'>${product.count}</td>
-        <td>${(product.old_price - product.price) * product.count}</td>
+        <td>${((product.old_price - product.price) * product.count)}</td>
         <td>
           <button class="delete" onclick="deleteProduct(${index})">Delete</button>
         </td>
